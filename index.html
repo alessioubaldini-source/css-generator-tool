@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Generator Tool</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🎨 CSS Generator Tool</h1>
+        <button class="tutorial-toggle">Tutorial Mode: OFF</button>
+        <button class="full-width-toggle">Full-Width Mode: OFF</button>
+      </div>
+
+      <div class="main-content">
+        <!-- Sidebar per le categorie e preset -->
+        <div class="sidebar">
+          <div class="preset-generator">
+            <button class="preset-btn">🎲 Stile Casuale</button>
+            <select class="preset-selector">
+              <option value="">Scegli un Preset...</option>
+            </select>
+          </div>
+
+          <div class="section-tabs">
+            <button class="tab-button active" data-tab="button">🔘 Button</button>
+            <button class="tab-button" data-tab="layout">📐 Layout</button>
+            <button class="tab-button" data-tab="text">✍️ Text</button>
+            <button class="tab-button" data-tab="card">📇 Card</button>
+            <button class="tab-button" data-tab="gradient">🌈 Gradient</button>
+            <button class="tab-button" data-tab="playground">🧪 Playground</button>
+          </div>
+        </div>
+
+        <!-- Sezione Controlli -->
+        <div class="controls-panel">
+          <!-- Tab Button -->
+          <div id="button-tab" class="tab-content active">
+            <div class="control-group">
+              <h3>✍️ Testo Pulsante</h3>
+              <div class="control-row">
+                <label>Testo:</label>
+                <input type="text" id="btn-text-input" value="Click Me!" />
+              </div>
+            </div>
+            <div class="control-group">
+              <h3>
+                📐 Dimensioni e Spaziatura
+                <span class="tooltip" data-tooltip="Padding: spazio interno. Font-size: grandezza testo. Unità comuni: px (pixel fissi), rem (relativo al font base), em (relativo al font dell'elemento).">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Padding Orizzontale:</label>
+                <input type="range" id="btn-padding-horizontal" min="5" max="30" value="24" />
+                <span class="value-display" id="btn-padding-horizontal-val">24px</span>
+              </div>
+              <div class="control-row">
+                <label>Padding Verticale:</label>
+                <input type="range" id="btn-padding-vertical" min="5" max="30" value="12" />
+                <span class="value-display" id="btn-padding-vertical-val">12px</span>
+              </div>
+              <div class="control-row">
+                <label>Dimensione Testo:</label>
+                <input type="range" id="btn-font-size" min="12" max="24" value="16" />
+                <span class="value-display" id="btn-font-size-val">16px</span>
+              </div>
+              <div class="best-practice-tip">💡 Usa padding simmetrico (es. 12px 24px) per button più equilibrati</div>
+            </div>
+
+            <div class="control-group">
+              <h3>
+                🎨 Colori
+                <span class="tooltip" data-tooltip="Scegli colori con contrasto sufficiente per l'accessibilità">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Colore Sfondo:</label>
+                <input type="color" id="btn-bg-color" value="#667eea" />
+              </div>
+              <div class="control-row">
+                <label>Colore Testo:</label>
+                <input type="color" id="btn-text-color" value="#ffffff" />
+                <span class="value-display" id="btn-contrast-display">C: -</span>
+              </div>
+              <div class="best-practice-tip">🌈 Assicurati che il contrasto tra testo e sfondo sia almeno 4.5:1</div>
+            </div>
+
+            <div class="control-group">
+              <h3>
+                🔘 Stile Generale
+                <span class="tooltip" data-tooltip="Border radius e ombre per migliorare l'aspetto visivo">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Raggio Bordo:</label>
+                <input type="range" id="btn-border-radius" min="0" max="25" value="8" />
+                <span class="value-display" id="btn-border-radius-val">8px</span>
+              </div>
+              <div class="control-row">
+                <label>Larghezza Bordo:</label>
+                <input type="range" id="btn-border-width" min="0" max="10" value="0" />
+                <span class="value-display" id="btn-border-width-val">0px</span>
+              </div>
+              <div class="control-row">
+                <label>Stile Bordo:</label>
+                <select id="btn-border-style">
+                  <option value="none">None</option>
+                  <option value="solid">Solid</option>
+                  <option value="dashed">Dashed</option>
+                  <option value="dotted">Dotted</option>
+                  <option value="double">Double</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Colore Bordo:</label>
+                <input type="color" id="btn-border-color" value="#333333" />
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>
+                ✨ Effetti Visivi e Ombre
+                <span class="tooltip" data-tooltip="box-shadow crea un'ombra. I valori sono: [inset] offset-x offset-y blur-radius spread-radius colore.">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Forza Ombra Box:</label>
+                <input type="range" id="btn-box-shadow" min="0" max="20" value="0" />
+                <span class="value-display" id="btn-box-shadow-val">0px</span>
+              </div>
+              <div class="control-row">
+                <label>Colore Ombra Box:</label>
+                <input type="color" id="btn-shadow-color" value="#000000" />
+              </div>
+              <div class="control-row">
+                <label>Ombra Inset:</label>
+                <input type="checkbox" id="btn-shadow-inset" />
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>
+                ✍️ Stile Testo Avanzato
+                <span class="tooltip" data-tooltip="Controlla l'aspetto del testo all'interno del button">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Peso Font:</label>
+                <select id="btn-font-weight">
+                  <option value="300">Light</option>
+                  <option value="400">Normal</option>
+                  <option value="600" selected>Semi-bold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Allineamento Testo:</label>
+                <select id="btn-text-align">
+                  <option value="left">Left</option>
+                  <option value="center">Center</option>
+                  <option value="right">Right</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Decorazione Testo:</label>
+                <select id="btn-text-decoration">
+                  <option value="none">None</option>
+                  <option value="underline">Underline</option>
+                  <option value="overline">Overline</option>
+                  <option value="line-through">Line Through</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Trasformazione Testo:</label>
+                <select id="btn-text-transform">
+                  <option value="none">None</option>
+                  <option value="uppercase">Uppercase</option>
+                  <option value="lowercase">Lowercase</option>
+                  <option value="capitalize">Capitalize</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Altezza Linea:</label>
+                <input type="range" id="btn-line-height" min="1" max="2.5" step="0.1" value="1.2" />
+                <span class="value-display" id="btn-line-height-val">1.2</span>
+              </div>
+              <div class="control-row">
+                <label>Spaziatura Lettere:</label>
+                <input type="range" id="btn-letter-spacing" min="-2" max="5" step="0.1" value="0" />
+                <span class="value-display" id="btn-letter-spacing-val">0px</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>
+                🖱️ Interazioni e Accessibilità
+                <span class="tooltip" data-tooltip="Controlla gli effetti di interazione e accessibilità">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Opacità:</label>
+                <input type="range" id="btn-opacity" min="0.1" max="1" step="0.05" value="1" />
+                <span class="value-display" id="btn-opacity-val">1</span>
+              </div>
+              <div class="control-row">
+                <label>Tipo Cursore:</label>
+                <select id="btn-cursor">
+                  <option value="pointer">Pointer</option>
+                  <option value="default">Default</option>
+                  <option value="grab">Grab</option>
+                  <option value="not-allowed">Not Allowed</option>
+                  <option value="help">Help</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Durata Transizione:</label>
+                <input type="range" id="btn-transition-duration" min="0.1" max="2" step="0.1" value="0.3" />
+                <span class="value-display" id="btn-transition-duration-val">0.3s</span>
+              </div>
+              <div class="control-row">
+                <label>Funzione Timing Transizione:</label>
+                <select id="btn-transition-timing">
+                  <option value="ease">Ease</option>
+                  <option value="linear">Linear</option>
+                  <option value="ease-in">Ease In</option>
+                  <option value="ease-out">Ease Out</option>
+                  <option value="ease-in-out">Ease In Out</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Effetto Hover:</label>
+                <select id="btn-hover-effect">
+                  <option value="none">None</option>
+                  <option value="scale">Scale</option>
+                  <option value="lift">Lift</option>
+                  <option value="darken">Darken</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Outline Larghezza (Focus):</label>
+                <input type="range" id="btn-outline-width" min="0" max="5" value="0" />
+                <span class="value-display" id="btn-outline-width-val">0px</span>
+              </div>
+              <div class="control-row">
+                <label>Outline Stile (Focus):</label>
+                <select id="btn-outline-style">
+                  <option value="none">None</option>
+                  <option value="solid">Solid</option>
+                  <option value="dashed">Dashed</option>
+                  <option value="dotted">Dotted</option>
+                  <option value="double">Double</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Outline Colore (Focus):</label>
+                <input type="color" id="btn-outline-color" value="#667eea" />
+              </div>
+              <div class="control-row">
+                <label>Outline Offset (Focus):</label>
+                <input type="range" id="btn-outline-offset" min="-10" max="10" value="0" />
+                <span class="value-display" id="btn-outline-offset-val">0px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Layout (Div/Flexbox/Grid) -->
+          <div id="layout-tab" class="tab-content">
+            <div class="control-group">
+              <h3>🔧 Tipo di Layout</h3>
+              <div class="control-row">
+                <label>Scegli Tipo:</label>
+                <select id="layout-type-selector">
+                  <option value="div">⬛ Div Standard</option>
+                  <option value="flexbox">➡️⬇️ Flexbox</option>
+                  <option value="grid">🔲 Grid</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Controlli specifici per DIV Standard -->
+            <div id="div-mode-controls" class="layout-mode-controls">
+              <div class="control-group">
+                <h3>📐 Dimensioni Div Contenitore</h3>
+                <div class="control-row">
+                  <label>Width:</label>
+                  <input type="range" id="div-width" min="100" max="400" value="200" />
+                  <span class="value-display" id="div-width-val">200px</span>
+                </div>
+                <div class="control-row">
+                  <label>Height:</label>
+                  <input type="range" id="div-height" min="100" max="300" value="150" />
+                  <span class="value-display" id="div-height-val">150px</span>
+                </div>
+                <div class="control-row">
+                  <label>Margine Contenitore:</label>
+                  <input type="range" id="div-margin" min="0" max="50" value="0" />
+                  <span class="value-display" id="div-margin-val">0px</span>
+                </div>
+                <div class="best-practice-tip">
+                  💡 Tutti gli elementi HTML hanno un "box model". `box-sizing: border-box;` (già applicato globalmente) fa sì che padding e border siano inclusi nella larghezza/altezza totale, semplificando i calcoli del layout.
+                </div>
+              </div>
+
+              <div class="control-group">
+                <h3>🎨 Stile Div Contenitore</h3>
+                <div class="control-row">
+                  <label>Background:</label>
+                  <input type="color" id="div-bg-color" value="#667eea" />
+                </div>
+                <div class="control-row">
+                  <label>Border Width:</label>
+                  <input type="range" id="div-border-width" min="0" max="10" value="0" />
+                  <span class="value-display" id="div-border-width-val">0px</span>
+                </div>
+                <div class="control-row">
+                  <label>Border Style:</label>
+                  <select id="div-border-style">
+                    <option value="none">None</option>
+                    <option value="solid">Solid</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="double">Double</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Border Color:</label>
+                  <input type="color" id="div-border-color" value="#333333" />
+                </div>
+                <div class="control-row">
+                  <label>Border Radius:</label>
+                  <input type="range" id="div-border-radius" min="0" max="50" value="8" />
+                  <span class="value-display" id="div-border-radius-val">8px</span>
+                </div>
+                <div class="control-row">
+                  <label>Box Shadow Strength:</label>
+                  <input type="range" id="div-shadow" min="0" max="30" value="0" />
+                  <span class="value-display" id="div-shadow-val">0px</span>
+                </div>
+                <div class="control-row">
+                  <label>Shadow Color:</label>
+                  <input type="color" id="div-shadow-color" value="#000000" />
+                </div>
+                <div class="control-row">
+                  <label>Inset Shadow:</label>
+                  <input type="checkbox" id="div-shadow-inset" />
+                </div>
+                <div class="control-row">
+                  <label>Opacità Contenitore:</label>
+                  <input type="range" id="div-opacity" min="0.1" max="1" step="0.1" value="1" />
+                  <span class="value-display" id="div-opacity-val">1</span>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <h3>📍 Posizionamento Contenitore</h3>
+                <div class="control-row">
+                  <label>Posizione:</label>
+                  <select id="div-position">
+                    <option value="static">Static</option>
+                    <option value="relative">Relative</option>
+                    <option value="absolute">Absolute</option>
+                    <option value="fixed">Fixed</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Top:</label>
+                  <input type="range" id="div-top" min="-100" max="100" value="0" />
+                  <span class="value-display" id="div-top-val">0px</span>
+                </div>
+                <div class="control-row">
+                  <label>Left:</label>
+                  <input type="range" id="div-left" min="-100" max="100" value="0" />
+                  <span class="value-display" id="div-left-val">0px</span>
+                </div>
+                <div class="control-row">
+                  <label>Z-Index:</label>
+                  <input type="range" id="div-z-index" min="0" max="100" value="1" />
+                  <span class="value-display" id="div-z-index-val">1</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controlli specifici per Flexbox -->
+            <div id="flexbox-mode-controls" class="layout-mode-controls" style="display: none">
+              <div class="control-group">
+                <h3>📏 Flexbox Layout <span class="tooltip" data-tooltip="Flexbox è ideale per distribuire elementi lungo un singolo asse (riga o colonna).">?</span></h3>
+                <div class="control-row">
+                  <label>Direction:</label>
+                  <select id="flex-direction">
+                    <option value="row">Row</option>
+                    <option value="column">Column</option>
+                    <option value="row-reverse">Row Reverse</option>
+                    <option value="column-reverse">Column Reverse</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Justify Content:</label>
+                  <select id="justify-content">
+                    <option value="flex-start">Flex Start</option>
+                    <option value="center">Center</option>
+                    <option value="flex-end">Flex End</option>
+                    <option value="space-between">Space Between</option>
+                    <option value="space-around">Space Around</option>
+                    <option value="space-evenly">Space Evenly</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Align Items:</label>
+                  <select id="align-items">
+                    <option value="stretch">Stretch</option>
+                    <option value="flex-start">Flex Start</option>
+                    <option value="center">Center</option>
+                    <option value="flex-end">Flex End</option>
+                    <option value="baseline">Baseline</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Gap:</label>
+                  <input type="range" id="flex-gap" min="0" max="40" value="10" />
+                  <span class="value-display" id="flex-gap-val">10px</span>
+                </div>
+                <div class="control-row">
+                  <label>Flex Wrap:</label>
+                  <select id="flex-wrap">
+                    <option value="nowrap">No Wrap</option>
+                    <option value="wrap" selected>Wrap</option>
+                    <option value="wrap-reverse">Wrap Reverse</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Align Content:</label>
+                  <select id="align-content">
+                    <option value="stretch">Stretch</option>
+                    <option value="flex-start">Flex Start</option>
+                    <option value="center">Center</option>
+                    <option value="flex-end">Flex End</option>
+                    <option value="space-between">Space Between</option>
+                    <option value="space-around">Space Around</option>
+                  </select>
+                </div>
+                <div class="best-practice-tip">🎯 Usa justify-content per l'asse principale e align-items per quello trasversale</div>
+              </div>
+            </div>
+
+            <!-- Controlli specifici per Grid -->
+            <div id="grid-mode-controls" class="layout-mode-controls" style="display: none">
+              <div class="control-group">
+                <h3>🔲 CSS Grid <span class="tooltip" data-tooltip="Grid è perfetto per layout complessi a due dimensioni (righe E colonne).">?</span></h3>
+                <div class="control-row">
+                  <label>Columns:</label>
+                  <input type="range" id="grid-columns" min="1" max="6" value="3" />
+                  <span class="value-display" id="grid-columns-val">3</span>
+                </div>
+                <div class="control-row">
+                  <label>Rows:</label>
+                  <input type="range" id="grid-rows" min="1" max="4" value="2" />
+                  <span class="value-display" id="grid-rows-val">2</span>
+                </div>
+                <div class="control-row">
+                  <label>Gap:</label>
+                  <input type="range" id="grid-gap" min="0" max="30" value="10" />
+                  <span class="value-display" id="grid-gap-val">10px</span>
+                </div>
+                <div class="control-row">
+                  <label>Auto Fit:</label>
+                  <select id="grid-auto-fit">
+                    <option value="none">None</option>
+                    <option value="auto-fit">Auto Fit</option>
+                    <option value="auto-fill">Auto Fill</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Grid Auto Flow:</label>
+                  <select id="grid-auto-flow">
+                    <option value="row">Row</option>
+                    <option value="column">Column</option>
+                    <option value="row dense">Row Dense</option>
+                    <option value="column dense">Column Dense</option>
+                  </select>
+                </div>
+                <div class="control-row">
+                  <label>Grid Auto Columns:</label>
+                  <input type="text" id="grid-auto-columns" value="1fr" />
+                </div>
+                <div class="control-row">
+                  <label>Grid Auto Rows:</label>
+                  <input type="text" id="grid-auto-rows" value="auto" />
+                </div>
+                <div class="best-practice-tip">📐 Grid è perfetto per layout bidimensionali complessi</div>
+              </div>
+            </div>
+
+            <!-- Controlli per Elementi Interni (Comuni a tutti i tipi di Layout) -->
+            <div id="layout-item-common-controls" class="layout-mode-controls">
+              <div class="control-group">
+                <h3>➕/➖ Elementi</h3>
+                <div class="control-row">
+                  <button id="add-layout-item-btn" class="action-button">Aggiungi Item</button>
+                  <button id="remove-layout-item-btn" class="action-button secondary">Rimuovi Item</button>
+                </div>
+              </div>
+              <div class="control-group">
+                <h3>📦 Stili Elementi Interni (.layout-item)</h3>
+                <div class="control-row">
+                  <label>Sfondo Item:</label>
+                  <input type="color" id="layout-item-bg-color" value="#764ba2" />
+                </div>
+                <div class="control-row">
+                  <label>Testo Item:</label>
+                  <input type="color" id="layout-item-text-color" value="#ffffff" />
+                  <span class="value-display" id="layout-item-contrast-display">C: -</span>
+                </div>
+                <div class="control-row">
+                  <label>Larghezza Item:</label>
+                  <input type="range" id="layout-item-width" min="50" max="200" value="80" />
+                  <span class="value-display" id="layout-item-width-val">80px</span>
+                </div>
+                <div class="control-row">
+                  <label>Altezza Item:</label>
+                  <input type="range" id="layout-item-height" min="30" max="150" value="60" />
+                  <span class="value-display" id="layout-item-height-val">60px</span>
+                </div>
+
+                <!-- Padding Item Dettagliato -->
+                <div class="control-row">
+                  <label>Padding Top:</label>
+                  <input type="range" id="layout-item-padding-top" min="0" max="20" value="10" />
+                  <span class="value-display" id="layout-item-padding-top-val">10px</span>
+                </div>
+                <div class="control-row">
+                  <label>Padding Right:</label>
+                  <input type="range" id="layout-item-padding-right" min="0" max="20" value="10" />
+                  <span class="value-display" id="layout-item-padding-right-val">10px</span>
+                </div>
+                <div class="control-row">
+                  <label>Padding Bottom:</label>
+                  <input type="range" id="layout-item-padding-bottom" min="0" max="20" value="10" />
+                  <span class="value-display" id="layout-item-padding-bottom-val">10px</span>
+                </div>
+                <div class="control-row">
+                  <label>Padding Left:</label>
+                  <input type="range" id="layout-item-padding-left" min="0" max="20" value="10" />
+                  <span class="value-display" id="layout-item-padding-left-val">10px</span>
+                </div>
+
+                <!-- Margine Item Dettagliato -->
+                <div class="control-row">
+                  <label>Margine Top:</label>
+                  <input type="range" id="layout-item-margin-top" min="0" max="20" value="5" />
+                  <span class="value-display" id="layout-item-margin-top-val">5px</span>
+                </div>
+                <div class="control-row">
+                  <label>Margine Right:</label>
+                  <input type="range" id="layout-item-margin-right" min="0" max="20" value="5" />
+                  <span class="value-display" id="layout-item-margin-right-val">5px</span>
+                </div>
+                <div class="control-row">
+                  <label>Margine Bottom:</label>
+                  <input type="range" id="layout-item-margin-bottom" min="0" max="20" value="5" />
+                  <span class="value-display" id="layout-item-margin-bottom-val">5px</span>
+                </div>
+                <div class="control-row">
+                  <label>Margine Left:</label>
+                  <input type="range" id="layout-item-margin-left" min="0" max="20" value="5" />
+                  <span class="value-display" id="layout-item-margin-left-val">5px</span>
+                </div>
+
+                <div class="control-row">
+                  <label>Raggio Bordo Item:</label>
+                  <input type="range" id="layout-item-border-radius" min="0" max="20" value="4" />
+                  <span class="value-display" id="layout-item-border-radius-val">4px</span>
+                </div>
+                <div class="control-row">
+                  <label>Ombra Item:</label>
+                  <input type="range" id="layout-item-box-shadow" min="0" max="15" value="0" />
+                  <span class="value-display" id="layout-item-box-shadow-val">0px</span>
+                </div>
+                <div class="control-row">
+                  <label>Colore Ombra Item:</label>
+                  <input type="color" id="layout-item-shadow-color" value="#000000" />
+                </div>
+                <div class="control-row">
+                  <label>Opacità Item:</label>
+                  <input type="range" id="layout-item-opacity" min="0.1" max="1" step="0.05" value="1" />
+                  <span class="value-display" id="layout-item-opacity-val">1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Text -->
+          <div id="text-tab" class="tab-content">
+            <div class="control-group">
+              <h3>✍️ Contenuto Testo</h3>
+              <div class="control-row">
+                <label>Testo:</label>
+                <input type="text" id="text-content-input" value="Sample Text Content" />
+              </div>
+            </div>
+            <div class="control-group">
+              <h3>📝 Typography</h3>
+              <div class="control-row">
+                <label>Font Size:</label>
+                <input type="range" id="text-font-size" min="12" max="48" value="18" />
+                <span class="value-display" id="text-font-size-val">18px</span>
+              </div>
+              <div class="control-row">
+                <label>Font Weight:</label>
+                <select id="text-font-weight">
+                  <option value="300">Light</option>
+                  <option value="400" selected>Normal</option>
+                  <option value="600">Semi-bold</option>
+                  <option value="700">Bold</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Text Align:</label>
+                <select id="text-align">
+                  <option value="left">Left</option>
+                  <option value="center">Center</option>
+                  <option value="right">Right</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>🎨 Stile</h3>
+              <div class="control-row">
+                <label>Color:</label>
+                <input type="color" id="text-color" value="#333333" />
+                <span class="value-display" id="text-contrast-display">C: -</span>
+              </div>
+              <div class="control-row">
+                <label>Line Height:</label>
+                <input type="range" id="text-line-height" min="1" max="2.5" step="0.1" value="1.4" />
+                <span class="value-display" id="text-line-height-val">1.4</span>
+              </div>
+              <div class="control-row">
+                <label>Letter Spacing:</label>
+                <input type="range" id="text-letter-spacing" min="-2" max="5" step="0.1" value="0" />
+                <span class="value-display" id="text-letter-spacing-val">0px</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>✨ Effetti</h3>
+              <div class="control-row">
+                <label>Text Shadow Strength:</label>
+                <input type="range" id="text-shadow" min="0" max="10" value="0" />
+                <span class="value-display" id="text-shadow-val">0px</span>
+              </div>
+              <div class="control-row">
+                <label>Shadow Color:</label>
+                <input type="color" id="text-shadow-color" value="#000000" />
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>🔄 Overflow & Wrapping</h3>
+              <div class="control-row">
+                <label>White Space:</label>
+                <select id="text-white-space">
+                  <option value="normal">Normal</option>
+                  <option value="nowrap">No Wrap</option>
+                  <option value="pre">Pre</option>
+                  <option value="pre-wrap">Pre Wrap</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Text Overflow:</label>
+                <select id="text-overflow">
+                  <option value="clip">Clip</option>
+                  <option value="ellipsis">Ellipsis</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Word Break:</label>
+                <select id="text-word-break">
+                  <option value="normal">Normal</option>
+                  <option value="break-all">Break All</option>
+                  <option value="keep-all">Keep All</option>
+                </select>
+              </div>
+              <div class="best-practice-tip">💡 Per usare `text-overflow: ellipsis`, imposta `white-space: nowrap` e `overflow: hidden` (aggiunto automaticamente).</div>
+            </div>
+          </div>
+
+          <!-- Tab Card -->
+          <div id="card-tab" class="tab-content">
+            <div class="control-group">
+              <h3>📐 Layout</h3>
+              <div class="control-row">
+                <label>Padding:</label>
+                <input type="range" id="card-padding" min="10" max="40" value="20" />
+                <span class="value-display" id="card-padding-val">20px</span>
+              </div>
+              <div class="control-row">
+                <label>Max Width:</label>
+                <input type="range" id="card-max-width" min="200" max="500" value="300" />
+                <span class="value-display" id="card-max-width-val">300px</span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <h3>🎨 Stile</h3>
+              <div class="control-row">
+                <label>Background:</label>
+                <input type="color" id="card-bg-color" value="#ffffff" />
+              </div>
+              <div class="control-row">
+                <label>Testo Card:</label>
+                <!-- Aggiunto label per chiarezza -->
+                <input type="color" id="card-text-color" value="#333333" />
+                <span class="value-display" id="card-contrast-display">C: -</span>
+              </div>
+              <div class="control-row">
+                <label>Border Width:</label>
+                <input type="range" id="card-border-width" min="0" max="10" value="0" />
+                <span class="value-display" id="card-border-width-val">0px</span>
+              </div>
+              <div class="control-row">
+                <label>Border Style:</label>
+                <select id="card-border-style">
+                  <option value="none">None</option>
+                  <option value="solid">Solid</option>
+                  <option value="dashed">Dashed</option>
+                  <option value="dotted">Dotted</option>
+                  <option value="double">Double</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Border Color:</label>
+                <input type="color" id="card-border-color" value="#dee2e6" />
+              </div>
+              <div class="control-row">
+                <label>Border Radius:</label>
+                <input type="range" id="card-border-radius" min="0" max="25" value="12" />
+                <span class="value-display" id="card-border-radius-val">12px</span>
+              </div>
+              <div class="control-row">
+                <label>Box Shadow Strength:</label>
+                <input type="range" id="card-box-shadow" min="0" max="25" value="12" />
+                <span class="value-display" id="card-box-shadow-val">12px</span>
+              </div>
+              <div class="control-row">
+                <label>Shadow Color:</label>
+                <input type="color" id="card-shadow-color" value="#000000" />
+              </div>
+              <div class="control-row">
+                <label>Inset Shadow:</label>
+                <input type="checkbox" id="card-shadow-inset" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Gradient -->
+          <div id="gradient-tab" class="tab-content">
+            <div class="control-group">
+              <h3>
+                🌈 Gradient Generator
+                <span class="tooltip" data-tooltip="Crea gradienti lineari e radiali personalizzati">?</span>
+              </h3>
+              <div class="control-row">
+                <label>Type:</label>
+                <select id="gradient-type">
+                  <option value="linear">Linear</option>
+                  <option value="radial">Radial</option>
+                </select>
+              </div>
+              <div class="control-row">
+                <label>Direction:</label>
+                <input type="range" id="gradient-direction" min="0" max="360" value="90" />
+                <span class="value-display" id="gradient-direction-val">90°</span>
+              </div>
+
+              <div class="gradient-stops">
+                <div class="gradient-stop">
+                  <label>Stop 1:</label>
+                  <input type="color" id="gradient-color-1" value="#667eea" />
+                  <input type="range" id="gradient-stop-1" min="0" max="100" value="0" />
+                  <span class="value-display" id="gradient-stop-1-val">0%</span>
+                </div>
+                <div class="gradient-stop">
+                  <label>Stop 2:</label>
+                  <input type="color" id="gradient-color-2" value="#764ba2" />
+                  <input type="range" id="gradient-stop-2" min="0" max="100" value="100" />
+                  <span class="value-display" id="gradient-stop-2-val">100%</span>
+                </div>
+              </div>
+              <div class="best-practice-tip">🎨 I gradienti sottili sono più professionali di quelli troppo contrastati</div>
+            </div>
+          </div>
+
+          <!-- Tab Playground -->
+          <div id="playground-tab" class="tab-content">
+            <div class="control-group">
+              <h3>🧪 Playground HTML</h3>
+              <textarea id="playground-html" placeholder="Incolla qui il tuo codice HTML...">
+<div class="my-box">
+  Ciao Mondo!
+</div></textarea
+              >
+            </div>
+            <div class="control-group">
+              <h3>🧪 Playground CSS</h3>
+              <textarea id="playground-css" placeholder="Incolla qui il tuo codice CSS...">
+.my-box {
+  background-color: #667eea;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 24px;
+}</textarea
+              >
+            </div>
+            <div class="control-group">
+              <button id="render-playground-btn" class="action-button">Renderizza Anteprima</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sezione Preview -->
+        <div class="preview-section">
+          <div class="preview-area">
+            <button id="preview-button" class="preview-button">Click Me!</button>
+            <!-- Unified layout preview div -->
+            <div id="preview-layout" class="preview-layout">
+              <!-- Gli item del layout saranno generati da JavaScript -->
+            </div>
+            <p id="preview-text" class="preview-text">Sample Text Content</p>
+            <div id="preview-card" class="preview-card">
+              <h3>Card Title</h3>
+              <p>This is a sample card with some content inside.</p>
+            </div>
+            <div id="preview-gradient" class="preview-gradient">Gradient</div>
+            <iframe id="preview-playground" class="preview-playground"></iframe>
+          </div>
+
+          <div class="css-output-container">
+            <div class="output-tabs">
+              <button class="output-tab-button active" data-output="css">CSS</button>
+              <button class="output-tab-button" data-output="html">HTML</button>
+              <button class="output-tab-button" data-output="box-model">Box Model</button>
+              <button class="copy-button">Copia Codice</button>
+            </div>
+            <div id="css-code" class="css-output active">/* CSS will appear here */</div>
+            <div id="html-code" class="html-output"></div>
+            <!-- Box Model Visualizer moved here -->
+            <div id="box-model-visualizer" class="box-model-output">
+              <div class="box-model-margin">
+                <span class="box-model-label">margin</span>
+                <div class="box-model-value top" id="bm-margin-top">-</div>
+                <div class="box-model-value left" id="bm-margin-left">-</div>
+                <div class="box-model-value right" id="bm-margin-right">-</div>
+                <div class="box-model-value bottom" id="bm-margin-bottom">-</div>
+                <div class="box-model-border">
+                  <span class="box-model-label">border</span>
+                  <div class="box-model-value top" id="bm-border-top">-</div>
+                  <div class="box-model-value left" id="bm-border-left">-</div>
+                  <div class="box-model-value right" id="bm-border-right">-</div>
+                  <div class="box-model-value bottom" id="bm-border-bottom">-</div>
+                  <div class="box-model-padding">
+                    <span class="box-model-label">padding</span>
+                    <div class="box-model-value top" id="bm-padding-top">-</div>
+                    <div class="box-model-value left" id="bm-padding-left">-</div>
+                    <div class="box-model-value right" id="bm-padding-right">-</div>
+                    <div class="box-model-value bottom" id="bm-padding-bottom">-</div>
+                    <div class="box-model-content" id="bm-content">-</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
